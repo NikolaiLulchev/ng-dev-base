@@ -1,1 +1,61 @@
-<p>register works!</p>
+<mat-card>
+  <mat-card-content>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+      <h2>Register</h2>
+      <mat-error *ngIf="!loginValid">
+        The username and password were not recognized
+      </mat-error>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="username" name="username" required>
+        <mat-error>
+          Please provide a valid username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="firstName" name="first-name" required>
+        <mat-error>
+          Please provide a valid username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="lastName" name="last-name" required>
+        <mat-error>
+          Please provide a valid username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" name="email" required>
+        <mat-error>
+          Please provide a valid username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required>
+        <mat-error>
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Repeat Password</mat-label>
+        <input matInput type="password" [(ngModel)]="repassword" name="re-password" required>
+        <mat-error>
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="user">Looking for job</mat-radio-button>
+        <mat-radio-button value="employer">Offering a job</mat-radio-button>
+      </mat-radio-group>
+
+      <div>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

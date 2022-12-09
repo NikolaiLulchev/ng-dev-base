@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  loginValid: boolean | undefined;
+  username: any;
+  password: any;
+  firstName: any;
+  lastName: any;
+  email: any;
+  repassword: any;
 
+  onSubmit() {
+
+  }
 }

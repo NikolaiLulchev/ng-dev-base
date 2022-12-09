@@ -6,23 +6,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material/material.module";
 import {HeaderComponent} from './core/header/header.component';
 import {AppRoutingModule} from "./app-routing.module";
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { AboutComponent } from './pages/about/about.component';
-import { OffersComponent } from './pages/offers/offers.component';
-import { AddOfferComponent } from './pages/add-offer/add-offer.component';
-import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { FooterComponent } from './core/footer/footer.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatSelectModule} from "@angular/material/select";
+import {HomeComponent} from './pages/home/home.component';
+import {LoginComponent} from './pages/login/login.component';
+import {RegisterComponent} from './pages/register/register.component';
+import {AboutComponent} from './pages/about/about.component';
+import {OffersComponent} from './pages/offers/offers.component';
+import {AddOfferComponent} from './pages/add-offer/add-offer.component';
+import {AdminPanelComponent} from './pages/admin-panel/admin-panel.component';
+import {ProfileComponent} from './pages/profile/profile.component';
+import {FooterComponent} from './core/footer/footer.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from "@angular/forms";
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 @NgModule({
@@ -45,14 +41,11 @@ import {MatButtonModule} from "@angular/material/button";
     MaterialModule,
     AppRoutingModule,
     FontAwesomeModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
     FormsModule,
-    MatCardModule,
-    MatButtonModule
+    MatButtonToggleModule,
+    MatRadioModule
   ],
-  exports:[FontAwesomeModule],
+  exports: [FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent]
 })
