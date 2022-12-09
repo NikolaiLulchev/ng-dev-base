@@ -1,17 +1,19 @@
 import {NgModule} from '@angular/core';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 
-const MaterialComponents = [
+const modules = [
   MatSlideToggleModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatBottomSheetModule
 ];
 
 
 @NgModule({
   declarations: [],
-  imports: [MaterialComponents],
-  exports: [MaterialComponents]
+  imports: [modules],
+  exports: [modules]
 })
 export class MaterialModule {
 }

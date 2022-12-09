@@ -16,7 +16,13 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {FormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -38,11 +44,17 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    MatCardModule,
+    MatButtonModule
   ],
+  exports:[FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  faGithub = faGithub
 }

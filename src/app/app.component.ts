@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {faGithub,faLinkedin} from "@fortawesome/free-brands-svg-icons";
 
 
 @Component({
@@ -9,5 +8,4 @@ import {faGithub,faLinkedin} from "@fortawesome/free-brands-svg-icons";
 })
 export class AppComponent {
   title = 'ng-dev-base';
-  faGithub = faGithub;
 }

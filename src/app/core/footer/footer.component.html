@@ -1,8 +1,15 @@
-<footer class="mat-bottom-sheet-container">
-  <div>
+<mat-toolbar color="primary" class=" absolute bottom-0">
+  <footer class="flex justify-around mx-auto gap-x-4 ">
     <div class="h5">
       &copy; Nikolay Lulchev {{date}}. All rights reserved.
     </div>
-<a><fa-icon [icon]="faGithub"></fa-icon> </a>
-  </div>
-</footer>
+    <div class="flex gap-x-4">
+      <a href="https://github.com/NikolaiLulchev" rel="noopener" target="_blank">
+        <fa-icon [icon]="faGithub"></fa-icon>
+      </a>
+      <a href="https://www.linkedin.com/in/nikolay-lulchev-4ab442133/" rel="noopener" target="_blank">
+        <fa-icon [icon]="faLinkedin"></fa-icon>
+      </a>
+    </div>
+  </footer>
+</mat-toolbar>
