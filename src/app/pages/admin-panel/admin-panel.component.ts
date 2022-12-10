@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {IBaseUser} from "../../core/interfaces/baseUser";
-import {Observable} from "rxjs";
 import {UserService} from "../../core/user.service";
 
 @Component({
@@ -24,9 +23,13 @@ export class AdminPanelComponent {
     // Call the loadUsers() function from the UserService to get a list of users
     this.userService.loadUsers().subscribe({
       // If the request is successful, assign the list of users to a property on the component
-      next: (users: IBaseUser[]) => { this.users = users; },
+      next: (users: IBaseUser[]) => {
+        this.users = users;
+      },
       // If there is an error, log it to the console
-      error: (error: any) => { console.error(error); }
+      error: (error: any) => {
+        console.error(error);
+      }
     });
   }
 
