@@ -41,9 +41,7 @@ import {MatRadioModule} from "@angular/material/radio";
     MaterialModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule,
-    MatButtonToggleModule,
-    MatRadioModule
+    FormsModule
   ],
   exports: [FontAwesomeModule],
   providers: [],

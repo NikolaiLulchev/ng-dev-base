@@ -7,6 +7,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatRadioModule} from "@angular/material/radio";
 
 const modules = [
   MatSlideToggleModule,
@@ -16,7 +18,9 @@ const modules = [
   MatInputModule,
   MatSelectModule,
   MatCardModule,
-  MatButtonModule
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatRadioModule
 ];
 
 

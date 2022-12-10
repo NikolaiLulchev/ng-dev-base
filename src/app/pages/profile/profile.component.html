@@ -1,1 +1,17 @@
-<p>profile works!</p>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img src="profile-picture.png">
+    </div>
+    <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+    <mat-card-subtitle>Age: {{ user.age }}</mat-card-subtitle>
+    <mat-card-subtitle>Gender: {{ user.gender }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Experience: {{ user.level }}</p>
+    <p>Tech Stack:</p>
+    <ul>
+      <li *ngFor="let tech of user.techStack">{{ tech.techStack }}</li>
+    </ul>
+  </mat-card-content>
+</mat-card>
