@@ -3,6 +3,9 @@ import {HomeComponent} from "./pages/home/home.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {AddOfferComponent} from "./pages/add-offer/add-offer.component";
+import {OffersComponent} from "./pages/offers/offers.component";
+import {AdminPanelComponent} from "./pages/admin-panel/admin-panel.component";
 
 
 const routes: Routes = [
@@ -26,6 +29,24 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'offers',
+    children: [
+      {
+        path:'',
+        component:OffersComponent
+      },
+      {
+      path: 'add',
+      component: AddOfferComponent
+    },
+
+    ]
+  },
+  {
+    path:'admin-panel',
+    component:AdminPanelComponent
   }
 ];
 

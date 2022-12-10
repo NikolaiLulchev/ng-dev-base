@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-offer.component.css']
 })
 export class AddOfferComponent {
+  position: any;
+  location: any;
+  description: any;
+  experience: any;
+  techStack: any;
+  title: any;
 
 }

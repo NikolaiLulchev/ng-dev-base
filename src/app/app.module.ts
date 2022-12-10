@@ -19,6 +19,9 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -40,8 +43,11 @@ import {MatRadioModule} from "@angular/material/radio";
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatIconModule
   ],
   exports: [FontAwesomeModule],
   providers: [],

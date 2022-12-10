@@ -1,1 +1,50 @@
-<p>add-offer works!</p>
+<mat-card>
+  <mat-card-content>
+    <h1>Add Job Offer</h1>
+    <form>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Title" [(ngModel)]="title" name="title">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Position</mat-label>
+        <mat-select [(ngModel)]="position" name="position">
+          <mat-option value="frontend">Frontend</mat-option>
+          <mat-option value="backend">Backend</mat-option>
+          <mat-option value="fullstack">Fullstack</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <mat-select [(ngModel)]="location" name="location">
+          <mat-option value="sofia">Sofia</mat-option>
+          <mat-option value="plovdiv">Plovdiv</mat-option>
+          <mat-option value="varna">Varna</mat-option>
+          <mat-option value="burgas">Burgas</mat-option>
+          <mat-option value="remote">Remote</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <textarea matInput placeholder="Description" [(ngModel)]="description" name="description"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Experience Level</mat-label>
+        <mat-select [(ngModel)]="experience" name="experience">
+          <mat-option value="intern">Intern</mat-option>
+          <mat-option value="junior">Junior</mat-option>
+          <mat-option value="mid-level">Mid-Level</mat-option>
+          <mat-option value="senior">Senior</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Tech Stack</mat-label>
+        <mat-select [(ngModel)]="techStack" name="tech-stack">
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>
