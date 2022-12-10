@@ -48,10 +48,16 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="user">Looking for job</mat-radio-button>
-        <mat-radio-button value="employer">Offering a job</mat-radio-button>
-      </mat-radio-group>
+      <mat-form-field appearance="fill">
+        <mat-label>I'm here to</mat-label>
+        <mat-select [(ngModel)]="role" name="role" required>
+          <mat-option [value]="'user'" > find a job</mat-option>
+          <mat-option [value]="'employer'">offer a job</mat-option>
+        </mat-select>
+        <mat-error>
+          Please select one
+        </mat-error>
+      </mat-form-field>
 
       <div>
         <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>

@@ -13,6 +13,7 @@ export class RegisterComponent {
   lastName: any;
   email: any;
   repassword: any;
+  role: any;
 
   onSubmit() {
 
