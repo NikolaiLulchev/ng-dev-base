@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {IBaseUser} from "../../core/interfaces/baseUser";
+import {Observable} from "rxjs";
+import {UserService} from "../../core/user.service";
 
 @Component({
   selector: 'app-admin-panel',
@@ -8,28 +10,24 @@ import {IBaseUser} from "../../core/interfaces/baseUser";
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent {
-  users:IBaseUser[] = [];
+  users: IBaseUser[] = [];
   displayedColumns = ['username', 'level', 'role', 'action'];
+  url = 'http://localhost:8080/api/v1/users/'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) {
+  }
 
   ngOnInit() {
   }
 
-  // onLoadUsers(){  }
-
-  onLoadUsers() {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    }
-
-    // @ts-ignore
-    fetch('http://localhost:8080/api/v1/users/', requestOptions).
-    then(response => response.json()).
-    then(json => {
-      this.users = json;
-    }).
-    catch(error => console.log('error', error))
+  onLoadUsers(): void {
+    // Call the loadUsers() function from the UserService to get a list of users
+    this.userService.loadUsers().subscribe({
+      // If the request is successful, assign the list of users to a property on the component
+      next: (users: IBaseUser[]) => { this.users = users; },
+      // If there is an error, log it to the console
+      error: (error: any) => { console.error(error); }
+    });
   }
+
 }
