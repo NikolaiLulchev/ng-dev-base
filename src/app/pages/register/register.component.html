@@ -1,8 +1,8 @@
 <mat-card>
   <mat-card-content>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
       <h2>Register</h2>
-      <mat-error *ngIf="!loginValid">
+      <mat-error *ngIf="!registerForm">
         The username and password were not recognized
       </mat-error>
       <mat-form-field appearance="fill">
@@ -14,14 +14,14 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>First Name</mat-label>
-        <input matInput [(ngModel)]="firstName" name="first-name" required>
+        <input matInput [(ngModel)]="firstName" name="firstName" required>
         <mat-error>
           Please provide a valid username
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Last Name</mat-label>
-        <input matInput [(ngModel)]="lastName" name="last-name" required>
+        <input matInput [(ngModel)]="lastName" name="lastName" required>
         <mat-error>
           Please provide a valid username
         </mat-error>
@@ -42,7 +42,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Repeat Password</mat-label>
-        <input matInput type="password" [(ngModel)]="repassword" name="re-password" required>
+        <input matInput type="password" [(ngModel)]="repassword" name="confirmPassword" required>
         <mat-error>
           Please provide a valid password
         </mat-error>
@@ -51,8 +51,8 @@
       <mat-form-field appearance="fill">
         <mat-label>I'm here to</mat-label>
         <mat-select [(ngModel)]="role" name="role" required>
-          <mat-option [value]="'user'" > find a job</mat-option>
-          <mat-option [value]="'employer'">offer a job</mat-option>
+          <mat-option [value]="'USER'" > find a job</mat-option>
+          <mat-option [value]="'EMPLOYER'">offer a job</mat-option>
         </mat-select>
         <mat-error>
           Please select one
@@ -60,7 +60,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.form.valid">Login</button>
       </div>
     </form>
   </mat-card-content>

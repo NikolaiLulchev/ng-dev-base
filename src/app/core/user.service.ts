@@ -1,18 +1,27 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {IBaseUser} from "./interfaces/baseUser";
 import {HttpClient} from "@angular/common/http";
-import {map, Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
+import {map, tap} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 
-export interface CreateUserDto { username: string, email: string, password: string, tel?: string }
+export interface CreateUserDto {
+  username: string,
+  email: string,
+  password: string,
+  confirmPassword: string,
+  role: string,
+  firstName: string,
+  lastName: string
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser!: IBaseUser;
-  url = 'http://localhost:8080/api/v1/users/'
+  currentUser: any;
+  url = 'http://localhost:8080/api/v2/users/'
 
   get isLogged() {
     return !!this.currentUser;
@@ -21,20 +30,19 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  // login$(userData: { email: string, password: string }): Observable<IBaseUser> {
-  //   // @ts-ignore
-  //   // @ts-ignore
-  //   return this.httpClient
-  //     .post<IBaseUser>(`${environment.apiUrl}/login`, userData, { withCredentials: true, observe: 'response' })
-  //     .pipe(
-  //       tap(response => console.log(response)),
-  //       map(response => response.body),
-  //       tap(user => this.currentUser = user)
-  //     )
-  // }
+  login$(userData: { username: string, password: string }): Observable<IBaseUser> {
 
-  getProfile$(): Observable<IBaseUser> {
-    return this.http.get<IBaseUser>(`${environment.apiUrl}/users/profile`, { withCredentials: true })
+    return this.http
+      .post<any>(`${environment.apiUrl}users/login`, userData, { withCredentials: true, observe: 'response' })
+      .pipe(
+        tap(response => console.log(response)),
+        map(response => response.body),
+        tap(user => this.currentUser = user)
+      )
+  }
+
+  getProfile$(id:string): Observable<IBaseUser> {
+    return this.http.get<IBaseUser>(`${environment.apiUrl}/users/profile/${id}`, {withCredentials: true})
       .pipe(tap(user => this.currentUser = user))
   }
 
@@ -42,10 +50,10 @@ export class UserService {
   }
 
   register$(userData: CreateUserDto): Observable<IBaseUser> {
-    return this.http.post<IBaseUser>(`${environment.apiUrl}/register`, userData, { withCredentials: true })
+    return this.http.post<IBaseUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
   }
 
-  loadUsers():Observable<IBaseUser[]>{
-    return this.http.get<IBaseUser[]>(this.url, { withCredentials: true });
+  loadUsers(): Observable<IBaseUser[]> {
+    return this.http.get<IBaseUser[]>(`${environment.apiUrl}/users`, {withCredentials: true});
   }
 }
