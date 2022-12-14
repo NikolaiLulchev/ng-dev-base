@@ -41,7 +41,7 @@ export class UserService {
       )
   }
 
-  getProfile$(id:string): Observable<IBaseUser> {
+  getProfile$(id: number | undefined): Observable<IBaseUser> {
     return this.http.get<IBaseUser>(`${environment.apiUrl}/users/profile/${id}`, {withCredentials: true})
       .pipe(tap(user => this.currentUser = user))
   }

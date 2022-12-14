@@ -34,17 +34,17 @@ export class AuthService {
   // }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/users/login`, { username, password })
+    return this.http.post<any>(`${environment.apiUrl}/users/login`, { username, password }, {withCredentials: true})
       .pipe(tap(user => this.user$$.next(user)));
   }
 
   logout() {
-    return this.http.post<void>(`${environment.apiUrl}/logout`, {})
+    return this.http.post<void>(`${environment.apiUrl}/logout`, {}, {withCredentials: true})
       .pipe(tap(() => this.user$$.next(null)));;
   }
 
-  getProfile(id:string) {
-    return this.http.get<IBaseUser>(`${environment.apiUrl}/users/profile/${id}`)
+  getProfile(id:number) {
+    return this.http.get<IBaseUser>(`${environment.apiUrl}/users/${id}`, {withCredentials: true})
       .pipe(
         tap(user => this.user$$.next(user)),
         catchError((err) => {
@@ -54,10 +54,10 @@ export class AuthService {
       );
   }
 
-  setProfile(username: string, email: string, tel?: string) {
-    return this.http.put<IBaseUser>('/api/users/profile', { username, email, tel })
-      .pipe(tap(user => this.user$$.next(user)));
-  }
+  // setProfile(username: string, email: string, tel?: string) {
+  //   return this.http.put<IBaseUser>('/api/users/profile', { username, email, tel })
+  //     .pipe(tap(user => this.user$$.next(user)));
+  // }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

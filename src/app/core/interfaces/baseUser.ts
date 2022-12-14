@@ -1,8 +1,9 @@
 import {IRole} from "./role";
 import {ITechStack} from "./techStack";
+import {GenderEnum} from "../enums/gender.enum";
 
 export interface IBaseUser{
-  id:string;
+  id:number;
   username:string;
   firstName:string;
   lastName:string;
@@ -10,8 +11,8 @@ export interface IBaseUser{
   password:string;
   role:IRole[];
   techStack:ITechStack[];
-  age:string;
-  gender:string;
+  age:number;
+  gender:GenderEnum;
   level:string;
 
 }

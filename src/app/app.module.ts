@@ -17,8 +17,6 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {FooterComponent} from './core/footer/footer.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from "@angular/forms";
-import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {MatRadioModule} from "@angular/material/radio";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
