@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {IBaseUser} from "../../core/interfaces/baseUser";
+import {IUser} from "../../core/interfaces/User";
 import {UserService} from "../../core/user.service";
 
 @Component({
@@ -9,9 +9,8 @@ import {UserService} from "../../core/user.service";
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent {
-  users: IBaseUser[] = [];
+  users: IUser[] = [];
   displayedColumns = ['username', 'level', 'role', 'action'];
-  url = 'http://localhost:8080/api/v1/users/'
 
   constructor(private http: HttpClient, private userService: UserService) {
   }
@@ -23,7 +22,7 @@ export class AdminPanelComponent {
     // Call the loadUsers() function from the UserService to get a list of users
     this.userService.loadUsers().subscribe({
       // If the request is successful, assign the list of users to a property on the component
-      next: (users: IBaseUser[]) => {
+      next: (users: IUser[]) => {
         this.users = users;
       },
       // If there is an error, log it to the console

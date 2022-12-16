@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {UserService} from "../../core/user.service";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -18,12 +17,12 @@ export class RegisterComponent {
   repassword: any;
   role: any;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   onSubmit(registerForm: NgForm) {
     console.log(registerForm.value);
-    this.userService.register$(registerForm.value).subscribe({
+    this.authService.register$(registerForm.value).subscribe({
       next: (user) => {
         console.log(user)
         this.router.navigate(['/home']);

@@ -2,7 +2,7 @@ import {IRole} from "./role";
 import {ITechStack} from "./techStack";
 import {GenderEnum} from "../enums/gender.enum";
 
-export interface IBaseUser{
+export interface IUser {
   id:number;
   username:string;
   firstName:string;

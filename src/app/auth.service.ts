@@ -1,65 +1,54 @@
-import { Injectable } from '@angular/core';
-import {IBaseUser} from "./core/interfaces/baseUser";
-import {BehaviorSubject, catchError, filter, of, Subscription, tap} from "rxjs";
+import {Injectable} from '@angular/core';
+import {IUser} from "./core/interfaces/User";
+import {BehaviorSubject, catchError, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import {map} from "rxjs/operators";
+import {CreateUserDto} from "./core/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private user$$ = new BehaviorSubject<undefined | null | IBaseUser>(undefined);
-  user$ = this.user$$.asObservable().pipe(
-    filter((val): val is IBaseUser | null => val !== undefined)
-  );
+  private _currentUser = new BehaviorSubject<IUser>(undefined);
 
-  user: IBaseUser | null = null;
+  currentUser$ = this._currentUser.asObservable();
+  isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
 
-  get isLoggedIn() {
-    return this.user !== null;
+  constructor(private httpClient: HttpClient) {
   }
 
-  subscription: Subscription;
-
-  constructor(private http: HttpClient) {
-    this.subscription = this.user$.subscribe(user => {
-      this.user = user;
-    });
-  }
-
-  // register(username: string, email: string, password: string, rePassword: string, tel?: string) {
-  //   return this.http.post<IBaseUser>(`${environment.apiUrl}/register`, { username, email, password, rePassword, tel })
-  //     .pipe(tap(user => this.user$$.next(user)));
-  // }
-
-  login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/users/login`, { username, password }, {withCredentials: true})
-      .pipe(tap(user => this.user$$.next(user)));
-  }
-
-  logout() {
-    return this.http.post<void>(`${environment.apiUrl}/logout`, {}, {withCredentials: true})
-      .pipe(tap(() => this.user$$.next(null)));;
-  }
-
-  getProfile(id:number) {
-    return this.http.get<IBaseUser>(`${environment.apiUrl}/users/${id}`, {withCredentials: true})
+  login$(userData: { email: string, password: string }): Observable<IUser> {
+    return this.httpClient
+      .post<IUser>(`${environment.apiUrl}/login`, userData, {withCredentials: true, observe: 'response'})
       .pipe(
-        tap(user => this.user$$.next(user)),
-        catchError((err) => {
-          this.user$$.next(null);
-          return of(err); // [off];
-        })
-      );
+        map(response => response.body),
+      )
   }
 
-  // setProfile(username: string, email: string, tel?: string) {
-  //   return this.http.put<IBaseUser>('/api/users/profile', { username, email, tel })
-  //     .pipe(tap(user => this.user$$.next(user)));
-  // }
+  logout$(): Observable<void> {
+    return this.httpClient
+      .post<void>(`${environment.apiUrl}/logout`, {}, {withCredentials: true})
+  }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  register$(userData: CreateUserDto): Observable<IUser> {
+    return this.httpClient.post<IUser>(`${environment.apiUrl}/register`, userData, {withCredentials: true})
+  }
+
+  authenticate(): Observable<IUser> {
+    return this.httpClient
+      .get<IUser>(`${environment.apiUrl}/users/profile`, {withCredentials: true})
+      .pipe(tap(currentProfile => this.handleLogin(currentProfile)), catchError((err) => {
+        return EMPTY;
+      }))
+  }
+
+  handleLogin(newUser: IUser) {
+    this._currentUser.next(newUser);
+  }
+
+  handleLogout() {
+    this._currentUser.next(undefined);
   }
 }

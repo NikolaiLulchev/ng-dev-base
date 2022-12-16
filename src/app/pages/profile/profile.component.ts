@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IBaseUser} from "../../core/interfaces/baseUser";
+import {IUser} from "../../core/interfaces/User";
 import {UserService} from "../../core/user.service";
 import {Router} from "@angular/router";
 
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent {
 
-  currentUser!: IBaseUser;
+  currentUser!: IUser;
 
   isInEditMode: boolean = false;
 
@@ -20,10 +20,10 @@ export class ProfileComponent {
     this.userService.getProfile$(this.currentUser?.id).subscribe({
       next: (user) => {
         this.currentUser = user;
-      },
-      error: () => {
-        this.router.navigate(['/login'])
-      }
+       },
+      // error: () => {
+      //   this.router.navigate(['/login'])
+      // }
     })
   }
 
