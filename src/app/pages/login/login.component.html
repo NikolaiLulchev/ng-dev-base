@@ -7,14 +7,14 @@
       </mat-error>
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="username" name="username" required>
+        <input matInput [(ngModel)]="username" name="username" required [minlength]="4" [maxlength]="20">
         <mat-error>
           Please provide a valid username
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput type="password"  [(ngModel)]="password" name="password" required>
+        <input matInput type="password"  [(ngModel)]="password" name="password" required [minlength]="4">
         <mat-error>
           Please provide a valid password
         </mat-error>

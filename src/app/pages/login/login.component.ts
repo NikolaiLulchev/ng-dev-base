@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, NgForm} from "@angular/forms";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import {FormBuilder, NgForm} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  loginValid=true;
+  loginValid = true;
   username: string | undefined;
   password: string | undefined;
 
@@ -24,40 +24,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    // console.log(this.files.nativeElement.files);
+
     if (form.invalid) {
       return;
     }
     const {username, password} = form.value;
     this.authService.login$({username, password})
-      .subscribe(user => {
-        this.router.navigate(['/']);
+      .subscribe({
+        next: () => {
+          if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
+            this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to'])
+          } else {
+            this.router.navigate(['/home']);
+          }
+        },
+        complete: () => {
+          console.log('login stream completed')
+        },
+        error: (err) => {
+          console.log(err);
+        }
       });
-
-    const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
-
-    this.router.navigate([returnUrl]);
   }
-
-  // handleLogin(): void {
-  //   // console.log('fromNgSubmit', this.loginFormGroup.valid);
-  //
-  //   this.authService.login$(this.loginFormGroup.value).subscribe({
-  //     next: () => {
-  //       if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
-  //         this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to'])
-  //       } else {
-  //         this.router.navigate(['/home']);
-  //       }
-  //     },
-  //     complete: () => {
-  //       console.log('login stream completed')
-  //     },
-  //     error: (err) => {
-  //       this.errorMessage = err.error.message;
-  //     }
-  //   });
-  // }
-
-
 }
