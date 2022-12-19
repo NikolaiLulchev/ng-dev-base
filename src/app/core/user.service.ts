@@ -40,8 +40,8 @@ export class UserService {
   //     )
   // }
 
-  getProfile$(id: number): Observable<IUser> {
-    return this.http.get<IUser>(`${environment.apiUrl}/users/${id}`, {withCredentials: true})
+  getProfile$(): Observable<IUser> {
+    return this.http.get<IUser>(`${environment.apiUrl}/users/profile`, {withCredentials: true})
       .pipe(tap(user => this.currentUser = user))
   }
 
