@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Observable, Subscription} from "rxjs";
-import {IUser} from "../interfaces/User";
+import {IUser} from "../interfaces/user";
 import {AuthService} from "../../auth.service";
 import {Router} from "@angular/router";
 
@@ -13,32 +13,19 @@ export class HeaderComponent {
   currentUser$: Observable<IUser> = this.authService.currentUser$;
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
 
-  message: string;
-  isMessageError: boolean;
+
 
   private isLoggingOut: boolean = false;
 
-  private subscription: Subscription;
 
-  constructor(public authService: AuthService, private router: Router, private messageBus: MessageBusService) {
+
+  constructor(public authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.subscription = this.messageBus.onNewMessage$.subscribe(newMessage => {
-      console.log('onNewMessage$.subscribe', newMessage);
-      this.message = newMessage?.text || '';
-      this.isMessageError = newMessage?.type === MessageType.Error;
-
-      if (this.message) {
-        setTimeout(() => {
-          this.messageBus.clear();
-        }, 5000);
-      }
-    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   logoutHandler(): void {

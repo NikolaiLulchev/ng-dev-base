@@ -1,9 +1,12 @@
 <mat-toolbar color="primary" class="justify-between max-w-7xl mx-auto">
   <div><a routerLink="home">Welcome to DevBase</a></div>
   <div class="flex gap-x-4">
+    <a routerLink="offers">Offers</a>
     <a routerLink="offers/add">Add Offer</a>
     <a routerLink="admin-panel">Admin Panel</a>
-    <a routerLink="profile">Profile</a>
-    <a routerLink="login">Login</a>
-    <a routerLink="register">Register</a></div>
+<!--    <a [routerLink]="['/users/profile', (currentUser$ | async)!.id]">{{(currentUser$ | async)!.username}}'s Profile </a>-->
+    <a routerLink="users/profile">Profile</a>
+    <a routerLink="users/login">Login</a>
+    <a routerLink="users/logout">Logout</a>
+    <a routerLink="users/register">Register</a></div>
 </mat-toolbar>

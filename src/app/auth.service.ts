@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {IUser} from "./core/interfaces/User";
-import {BehaviorSubject, catchError, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, EMPTY, Observable} from "rxjs";
+import {catchError, map, tap} from "rxjs/operators";
+import {IUser} from "./core/interfaces/user";
 import {environment} from "../environments/environment";
-import {map} from "rxjs/operators";
 import {CreateUserDto} from "./core/user.service";
 
 @Injectable({
@@ -19,9 +19,9 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {
   }
 
-  login$(userData: { email: string, password: string }): Observable<IUser> {
+  login$(userData: { username: string, password: string }): Observable<IUser> {
     return this.httpClient
-      .post<IUser>(`${environment.apiUrl}/login`, userData, {withCredentials: true, observe: 'response'})
+      .post<IUser>(`${environment.apiUrl}/users/login`, userData, {withCredentials: true, observe: 'response'})
       .pipe(
         map(response => response.body),
       )
@@ -29,11 +29,11 @@ export class AuthService {
 
   logout$(): Observable<void> {
     return this.httpClient
-      .post<void>(`${environment.apiUrl}/logout`, {}, {withCredentials: true})
+      .post<void>(`${environment.apiUrl}/users/logout`, {}, {withCredentials: true})
   }
 
   register$(userData: CreateUserDto): Observable<IUser> {
-    return this.httpClient.post<IUser>(`${environment.apiUrl}/register`, userData, {withCredentials: true})
+    return this.httpClient.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
   }
 
   authenticate(): Observable<IUser> {

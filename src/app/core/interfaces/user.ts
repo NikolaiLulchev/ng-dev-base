@@ -11,6 +11,7 @@ export interface IUser {
   password:string;
   role:IRole[];
   techStack:ITechStack[];
+  dateOfBirth:string;
   age:number;
   gender:GenderEnum;
   level:string;

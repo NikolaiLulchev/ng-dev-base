@@ -6,6 +6,7 @@ import {ProfileComponent} from "./pages/profile/profile.component";
 import {AddOfferComponent} from "./pages/add-offer/add-offer.component";
 import {OffersComponent} from "./pages/offers/offers.component";
 import {AdminPanelComponent} from "./pages/admin-panel/admin-panel.component";
+import {AdminGuard} from "./admin-guard.service";
 
 
 const routes: Routes = [
@@ -19,34 +20,40 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
+    path: 'users',
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      }
+    ]
   },
   {
     path: 'offers',
     children: [
       {
-        path:'',
-        component:OffersComponent
+        path: '',
+        component: OffersComponent
       },
       {
-      path: 'add',
-      component: AddOfferComponent
-    },
+        path: 'add',
+        component: AddOfferComponent
+      },
 
     ]
   },
   {
-    path:'admin-panel',
-    component:AdminPanelComponent
+    path: 'admin-panel',
+    component: AdminPanelComponent,
+    canActivate:[AdminGuard]
   }
 ];
 

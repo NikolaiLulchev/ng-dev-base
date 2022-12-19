@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {IUser} from "../../core/interfaces/User";
+import {IUser} from "../../core/interfaces/user";
 import {UserService} from "../../core/user.service";
 
 @Component({

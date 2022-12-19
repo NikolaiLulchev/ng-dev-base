@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {IUser} from "../../core/interfaces/User";
+import {IUser} from "../../core/interfaces/user";
 import {UserService} from "../../core/user.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../auth.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -10,21 +12,22 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent {
 
-  currentUser!: IUser;
+  currentUser$: Observable<IUser> = this.authService.currentUser$;
 
   isInEditMode: boolean = false;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.userService.getProfile$(this.currentUser?.id).subscribe({
-      next: (user) => {
-        this.currentUser = user;
-       },
+    // this.userService.getProfile$(this.currentUser?.id).subscribe({
+    //   next: (user) => {
+    //     this.currentUser = user;
+    //     console.log(this.currentUser);
+    //    },
       // error: () => {
       //   this.router.navigate(['/login'])
       // }
-    })
+    // })
   }
 
   // user = {

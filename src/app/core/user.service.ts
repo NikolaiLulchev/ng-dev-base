@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IUser} from "./interfaces/User";
+import {IUser} from "./interfaces/user";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
@@ -29,24 +29,24 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  login$(userData: { username: string, password: string }): Observable<IUser> {
-
-    return this.http
-      .post<any>(`${environment.apiUrl}users/login`, userData, { withCredentials: true, observe: 'response' })
-      .pipe(
-        tap(response => console.log(response)),
-        map(response => response.body),
-        tap(user => this.currentUser = user)
-      )
-  }
+  // login$(userData: { username: string, password: string }): Observable<IUser> {
+  //
+  //   return this.http
+  //     .post<any>(`${environment.apiUrl}users/login`, userData, { withCredentials: true, observe: 'response' })
+  //     .pipe(
+  //       tap(response => console.log(response)),
+  //       map(response => response.body),
+  //       tap(user => this.currentUser = user)
+  //     )
+  // }
 
   getProfile$(id: number): Observable<IUser> {
-    return this.http.get<IUser>(`${environment.apiUrl}/users/profile/${id}`, {withCredentials: true})
+    return this.http.get<IUser>(`${environment.apiUrl}/users/${id}`, {withCredentials: true})
       .pipe(tap(user => this.currentUser = user))
   }
 
-  logout(): void {
-  }
+  // logout(): void {
+  // }
 
   register$(userData: CreateUserDto): Observable<IUser> {
     return this.http.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
@@ -54,5 +54,10 @@ export class UserService {
 
   loadUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(`${environment.apiUrl}/users`, {withCredentials: true});
+  }
+
+  isAdmin() {
+//TODO lulchevn
+    return true;
   }
 }
