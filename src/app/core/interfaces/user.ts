@@ -1,6 +1,7 @@
 import {IRole} from "./role";
 import {ITechStack} from "./techStack";
 import {GenderEnum} from "../enums/gender.enum";
+import {LevelEnum} from "../enums/level.enum";
 
 export interface IUser {
   id:number;
@@ -14,6 +15,6 @@ export interface IUser {
   dateOfBirth:string;
   age:number;
   gender:GenderEnum;
-  level:string;
+  level:LevelEnum;
 
 }

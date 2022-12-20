@@ -7,6 +7,7 @@ import {AddOfferComponent} from "./pages/add-offer/add-offer.component";
 import {OffersComponent} from "./pages/offers/offers.component";
 import {AdminPanelComponent} from "./pages/admin-panel/admin-panel.component";
 import {AdminGuard} from "./admin-guard.service";
+import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component";
 
 
 const routes: Routes = [
@@ -32,7 +33,11 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+      },
+      {
+        path: 'edit',
+        component: EditProfileComponent
       }
     ]
   },
@@ -53,7 +58,7 @@ const routes: Routes = [
   {
     path: 'admin-panel',
     component: AdminPanelComponent,
-    canActivate:[AdminGuard]
+    canActivate: [AdminGuard]
   }
 ];
 

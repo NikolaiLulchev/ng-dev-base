@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {IUser} from "../../core/interfaces/user";
 import {UserService} from "../../core/user.service";
 import {Router} from "@angular/router";
-import {AuthService} from "../../auth.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +12,8 @@ export class ProfileComponent {
 
   currentUser: IUser;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.userService.getProfile$().subscribe({
@@ -27,4 +26,7 @@ export class ProfileComponent {
     })
   }
 
+  editMode() {
+    this.router.navigate(['/users/edit'])
+  }
 }

@@ -16,10 +16,12 @@ import {AdminPanelComponent} from './pages/admin-panel/admin-panel.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {FooterComponent} from './core/footer/footer.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
+import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component";
+
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {HttpClientModule} from "@angular/common/http";
     AddOfferComponent,
     AdminPanelComponent,
     ProfileComponent,
-    FooterComponent
+    FooterComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import {HttpClientModule} from "@angular/common/http";
     FontAwesomeModule,
     FormsModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   exports: [FontAwesomeModule],
   providers: [],

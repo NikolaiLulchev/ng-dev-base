@@ -14,4 +14,7 @@
       <li *ngFor="let tech of currentUser.techStack">{{ tech.techStack }}</li>
     </ul>
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="editMode()">Edit Profile</button>
+  </mat-card-actions>
 </mat-card>

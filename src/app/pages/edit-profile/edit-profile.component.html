@@ -1,0 +1,41 @@
+<mat-card>
+  <form *ngIf="currentUser" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" placeholder="Email" formControlName="email"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option *ngFor="let gender of genderOptions" [value]="gender">
+          {{ gender }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Experience Level</mat-label>
+      <mat-select formControlName="experienceLevel">
+        <mat-option *ngFor="let level of experienceLevelOptions" [value]="level">
+          {{ level}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="First Name" formControlName="firstName"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lastName"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tech Stack</mat-label>
+      <mat-select formControlName="techStack" multiple>
+        <mat-option *ngFor="let tech of techStackOptions" [value]="tech">
+          {{ tech}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+</mat-card>
