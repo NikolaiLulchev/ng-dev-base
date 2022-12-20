@@ -15,6 +15,16 @@ export interface CreateUserDto {
   lastName: string
 }
 
+export interface UpdateUserDto {
+  username: string,
+  email: string,
+  password: string,
+  confirmPassword: string,
+  role: string,
+  firstName: string,
+  lastName: string
+}
+
 @Injectable({
   providedIn: 'root'
 })

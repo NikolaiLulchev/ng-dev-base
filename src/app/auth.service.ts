@@ -4,7 +4,7 @@ import {BehaviorSubject, EMPTY, Observable} from "rxjs";
 import {catchError, map, tap} from "rxjs/operators";
 import {IUser} from "./core/interfaces/user";
 import {environment} from "../environments/environment";
-import {CreateUserDto} from "./core/user.service";
+import {CreateUserDto, UpdateUserDto} from "./core/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,10 @@ export class AuthService {
 
   register$(userData: CreateUserDto): Observable<IUser> {
     return this.httpClient.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
+  }
+
+  update$(userId:number, userData: UpdateUserDto): Observable<IUser> {
+    return this.httpClient.patch<IUser>(`${environment.apiUrl}/users/${userId}`, userData, {withCredentials: true})
   }
 
   authenticate(): Observable<IUser> {

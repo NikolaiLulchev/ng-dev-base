@@ -6,6 +6,7 @@ import {TechEnum} from "../../core/enums/tech.enum";
 import {IUser} from "../../core/interfaces/user";
 import {UserService} from "../../core/user.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,12 +22,12 @@ export class EditProfileComponent implements OnInit {
 
   currentUser: IUser;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
 
-    this.userService.getProfile$().subscribe({
+    this.authService.authenticate().subscribe({
       next: (user) => {
         this.currentUser = user;
         console.log("edit user " + JSON.stringify(user))
@@ -35,7 +36,7 @@ export class EditProfileComponent implements OnInit {
             username: [this.currentUser.username],
             email: [this.currentUser.email],
             gender: [this.currentUser.gender],
-            experienceLevel: [this.currentUser.level],
+            level: [this.currentUser.level],
             firstName: [this.currentUser.firstName],
             lastName: [this.currentUser.lastName],
             techStack: [this.currentUser.techStack]
@@ -50,7 +51,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO: Implement submit functionality
+    const userId = this.currentUser.id
+    this.authService.update$(userId,this.editForm.value).subscribe()
     console.log(this.editForm.value);
   }
 }
