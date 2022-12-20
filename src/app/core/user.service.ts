@@ -39,16 +39,6 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  // login$(userData: { username: string, password: string }): Observable<IUser> {
-  //
-  //   return this.http
-  //     .post<any>(`${environment.apiUrl}users/login`, userData, { withCredentials: true, observe: 'response' })
-  //     .pipe(
-  //       tap(response => console.log(response)),
-  //       map(response => response.body),
-  //       tap(user => this.currentUser = user)
-  //     )
-  // }
 
   getProfile$(): Observable<IUser> {
     return this.http.get<IUser>(`${environment.apiUrl}/users/profile`, {withCredentials: true})

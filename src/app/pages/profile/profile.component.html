@@ -1,17 +1,21 @@
 <mat-card *ngIf="currentUser">
   <mat-card-header>
     <div mat-card-avatar>
-      <img src="profile-picture.png">
+      <img
+        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+        alt="profile.jpg">
     </div>
-    <mat-card-title>{{ currentUser.firstName }} {{ currentUser.lastName }}</mat-card-title>
-    <mat-card-subtitle>Age: {{ currentUser.age }}</mat-card-subtitle>
-    <mat-card-subtitle>Gender: {{ currentUser.gender }}</mat-card-subtitle>
+      <mat-card-title>{{ currentUser.firstName }} {{ currentUser.lastName }}</mat-card-title>
+      <mat-card-subtitle>Age: {{ currentUser.age }}</mat-card-subtitle>
+      <mat-card-subtitle>Gender: {{ currentUser.gender }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>Experience: {{ currentUser.level }}</p>
     <p>Tech Stack:</p>
     <ul>
-      <li *ngFor="let tech of currentUser.techStack">{{ tech.techStack }}</li>
+      <li *ngFor="let tech of currentUser.techStack; let i=index">{{tech}}{{i < currentUser.techStack.length - 1
+        ? ', '
+        : ''}}</li>
     </ul>
   </mat-card-content>
   <mat-card-actions>

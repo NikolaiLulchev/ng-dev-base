@@ -21,6 +21,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 
@@ -39,18 +40,19 @@ import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component"
     FooterComponent,
     EditProfileComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FontAwesomeModule,
-    FormsModule,
-    MatTableModule,
-    MatIconModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FontAwesomeModule,
+        FormsModule,
+        MatTableModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatGridListModule
+    ],
   exports: [FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent]

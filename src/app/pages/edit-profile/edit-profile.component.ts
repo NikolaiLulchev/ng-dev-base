@@ -51,8 +51,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const userId = this.currentUser.id
-    this.authService.update$(userId,this.editForm.value).subscribe()
-    console.log(this.editForm.value);
+    const userId = this.currentUser.id;
+    this.authService.update$(userId, this.editForm.value)
+      .subscribe(
+        (updatedUser) => {
+          // Update the current user object with the updated user data
+          this.currentUser = updatedUser;
+          // Navigate to the profile page
+          this.router.navigate(['/users/profile']);
+        }
+      );
+    console.log(this.currentUser);
   }
 }

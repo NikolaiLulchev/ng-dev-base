@@ -1,1 +1,17 @@
-<p>offers works!</p>
+<div class="mat-card-grid">
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let job of jobs">
+      <mat-card class="mat-card">
+        <mat-card-header>
+          <mat-card-title>{{job.position}}</mat-card-title>
+          <mat-card-subtitle>{{job.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Location: {{job.location}}</p>
+          <p>Company: {{job.company}}</p>
+          <p>Added On: {{job.addedOn}}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
