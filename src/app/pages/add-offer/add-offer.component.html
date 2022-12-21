@@ -8,21 +8,17 @@
       <br>
       <mat-form-field>
         <mat-label>Position</mat-label>
-        <mat-select [(ngModel)]="position" name="position">
-          <mat-option value="frontend">Frontend</mat-option>
-          <mat-option value="backend">Backend</mat-option>
-          <mat-option value="fullstack">Fullstack</mat-option>
+        <mat-select formControlName="position">
+          <mat-option *ngFor="let position of positions" [value]="position">
+            {{ position }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <mat-form-field>
         <mat-label>Location</mat-label>
-        <mat-select [(ngModel)]="location" name="location">
-          <mat-option value="sofia">Sofia</mat-option>
-          <mat-option value="plovdiv">Plovdiv</mat-option>
-          <mat-option value="varna">Varna</mat-option>
-          <mat-option value="burgas">Burgas</mat-option>
-          <mat-option value="remote">Remote</mat-option>
+        <mat-select formControlName="location">
+          <mat-option *ngFor="let location of locations" [value]="location">{{location}}</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
@@ -32,17 +28,17 @@
       <br>
       <mat-form-field>
         <mat-label>Experience Level</mat-label>
-        <mat-select [(ngModel)]="experience" name="experience">
-          <mat-option value="intern">Intern</mat-option>
-          <mat-option value="junior">Junior</mat-option>
-          <mat-option value="mid-level">Mid-Level</mat-option>
-          <mat-option value="senior">Senior</mat-option>
+        <mat-select formControlName="experience">
+          <mat-option *ngFor="let level of experience" [value]="level">{{level}}</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <mat-form-field>
         <mat-label>Tech Stack</mat-label>
-        <mat-select [(ngModel)]="techStack" name="tech-stack">
+        <mat-select formControlName="techStack" multiple>
+          <mat-option *ngFor="let tech of techStack" [value]="tech">
+            {{ tech}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </form>

@@ -1,3 +1,3 @@
 export enum PositionEnum{
-  FRONTEND='FRONTEND', BACKEND='BACKEND', FULLSTACK='FULLSTACK'
+  FRONTEND='Frontend', BACKEND='Backend', FULLSTACK='Fullstack'
 }

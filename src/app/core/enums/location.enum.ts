@@ -1,3 +1,3 @@
 export enum LocationEnum{
-  SOFIA='SOFIA', PLOVDIV='PLOVDIV', VARNA='VARNA', REMOTE='REMOTE'
+  SOFIA='Sofia', PLOVDIV='Plovdiv', VARNA='Varna',BOURGAS='Bourgas', REMOTE='Remote'
 }

@@ -1,13 +1,13 @@
 export enum TechEnum {
-  SPRING = 'SPRING',
-  JAVA = 'JAVA',
-  MY_SQL = 'MY_SQL',
-  NODE_JS = 'NODE_JS',
-  JAVA_SCRIPT = 'JAVA_SCRIPT',
+  SPRING = 'Spring',
+  JAVA = 'Java',
+  MY_SQL = 'MySQL',
+  NODE_JS = 'Node.JS',
+  JAVA_SCRIPT = 'JavaScript',
   HTML = 'HTML',
   CSS = 'CSS',
-  REACT = 'REACT',
-  ANGULAR = 'ANGULAR',
-  MONGO_DB = 'MONGO_DB'
+  REACT = 'React',
+  ANGULAR = 'Angular',
+  MONGO_DB = 'MongoDB'
 
 }

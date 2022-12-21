@@ -1,3 +1,3 @@
 export enum LevelEnum {
-  INTERN='INTERN', JUNIOR='JUNIOR', MID='MID', SENIOR='SENIOR'
+  INTERN='Intern', JUNIOR='Junior', MID='Mid-Level', SENIOR='Senior'
 }

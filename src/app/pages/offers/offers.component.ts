@@ -20,7 +20,7 @@ export class OffersComponent {
       title: 'Full Stack Developer',
       location: LocationEnum.PLOVDIV,
       company: 'DevBase',
-      addedOn: Date.parse(String(2022 - 12 - 12))
+      addedOn: Date.parse(String(3-3-2022))
     },
     {
       position: PositionEnum.FULLSTACK,
