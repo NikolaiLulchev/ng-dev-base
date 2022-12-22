@@ -15,8 +15,23 @@ export class AuthService {
 
   currentUser$ = this._currentUser.asObservable();
   isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
+  isAdmin$ = this.currentUser$.pipe(
+    map(user => user && user.role.some(role => role === 'ADMIN'))
+  )
+
+
 
   constructor(private httpClient: HttpClient) {
+    this.currentUser$.subscribe(currentUser => {
+      console.log(currentUser);
+    });
+  }
+
+
+
+
+  get isLogged() {
+    return !!this.currentUser$;
   }
 
   login$(userData: { username: string, password: string }): Observable<IUser> {
@@ -36,7 +51,7 @@ export class AuthService {
     return this.httpClient.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
   }
 
-  update$(userId:number, userData: UpdateUserDto): Observable<IUser> {
+  update$(userId: number, userData: UpdateUserDto): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${environment.apiUrl}/users/${userId}`, userData, {withCredentials: true})
   }
 
@@ -55,4 +70,12 @@ export class AuthService {
   handleLogout() {
     this._currentUser.next(undefined);
   }
+
+
+
+  loadUsers(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${environment.apiUrl}/users`, {withCredentials: true});
+  }
+
+
 }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {IUser} from "../../core/interfaces/user";
-import {UserService} from "../../core/user.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-admin-panel',
@@ -12,7 +12,7 @@ export class AdminPanelComponent {
   users: IUser[] = [];
   displayedColumns = ['username', 'level', 'role', 'action'];
 
-  constructor(private http: HttpClient, private userService: UserService) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class AdminPanelComponent {
 
   onLoadUsers(): void {
     // Call the loadUsers() function from the UserService to get a list of users
-    this.userService.loadUsers().subscribe({
+    this.authService.loadUsers().subscribe({
       // If the request is successful, assign the list of users to a property on the component
       next: (users: IUser[]) => {
         this.users = users;

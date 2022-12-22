@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {Component} from '@angular/core';
+import {Observable} from "rxjs";
 import {IUser} from "../interfaces/user";
 import {AuthService} from "../../auth.service";
 import {Router} from "@angular/router";
@@ -10,13 +10,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  currentUser$: Observable<IUser> = this.authService.currentUser$;
-  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
-
-
 
   private isLoggingOut: boolean = false;
-
 
 
   constructor(public authService: AuthService, private router: Router) {

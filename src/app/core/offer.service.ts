@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {IUser} from "./interfaces/user";
 import {ITechStack} from "./interfaces/techStack";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
@@ -27,9 +27,23 @@ export class OfferService {
   constructor(private http: HttpClient) {
   }
 
-  getAllOffers$(): Observable<OfferDTO[]> {
-    return this.http.get<OfferDTO[]>(`${environment.apiUrl}/offers`, {withCredentials: true});
+  getAllOffers$(location?: string, position?: string, level?: string): Observable<OfferDTO[]> {
+    let params = new HttpParams();
+    if (location) {
+      params = params.set('location', location);
+    }
+    if (position) {
+      params = params.set('position', position);
+    }
+    if (level) {
+      params = params.set('level', level);
+    }
+    return this.http.get<OfferDTO[]>(`${environment.apiUrl}/offers`, {params, withCredentials: true});
   }
+
+  // getAllOffers$(): Observable<OfferDTO[]> {
+  //   return this.http.get<OfferDTO[]>(`${environment.apiUrl}/offers`, {withCredentials: true});
+  // }
 
   getOfferById$(offerId: number): Observable<OfferDTO> {
     return this.http.get<OfferDTO>(`${environment.apiUrl}/offers/${offerId}`, {withCredentials: true});

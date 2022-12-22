@@ -10,7 +10,7 @@ export interface IUser {
   lastName:string;
   email:string;
   password:string;
-  role:IRole[];
+  role:[];
   techStack:ITechStack[];
   dateOfBirth:string;
   age:number;

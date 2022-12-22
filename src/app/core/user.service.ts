@@ -32,32 +32,28 @@ export class UserService {
 
   currentUser: any;
 
-  get isLogged() {
-    return !!this.currentUser;
-  }
-
-  constructor(private http: HttpClient) {
-  }
-
-
-  getProfile$(): Observable<IUser> {
-    return this.http.get<IUser>(`${environment.apiUrl}/users/profile`, {withCredentials: true})
-      .pipe(tap(user => this.currentUser = user))
-  }
+  // get isLogged() {
+  //   return !!this.currentUser;
+  // }
+  //
+  // constructor(private http: HttpClient) {
+  // }
+  //
+  //
+  // getProfile$(): Observable<IUser> {
+  //   return this.http.get<IUser>(`${environment.apiUrl}/users/profile`, {withCredentials: true})
+  //     .pipe(tap(user => this.currentUser = user))
+  // }
 
   // logout(): void {
   // }
 
-  register$(userData: CreateUserDto): Observable<IUser> {
-    return this.http.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
-  }
+  // register$(userData: CreateUserDto): Observable<IUser> {
+  //   return this.http.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
+  // }
 
-  loadUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${environment.apiUrl}/users`, {withCredentials: true});
-  }
+  // loadUsers(): Observable<IUser[]> {
+  //   return this.http.get<IUser[]>(`${environment.apiUrl}/users`, {withCredentials: true});
+  // }
 
-  isAdmin() {
-//TODO lulchevn
-    return true;
-  }
 }

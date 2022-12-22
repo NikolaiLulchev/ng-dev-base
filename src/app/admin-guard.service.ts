@@ -1,20 +1,33 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {Observable} from "rxjs";
-import {UserService} from "./core/user.service";
+import {AuthService} from "./auth.service";
+import {map, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   canActivate(): boolean | Observable<boolean> | Promise<boolean> {
-    const isAdmin = this.userService.isAdmin();
-    if (!isAdmin) {
-      this.router.navigate(['/']);
-    }
-    return isAdmin;
+    this.authService.isAdmin$.subscribe(isAdmin => {
+      console.log(isAdmin);
+    });
+
+    this.authService.currentUser$.subscribe(user => {
+      console.log(user)
+    });
+
+    return this.authService.isAdmin$.pipe(
+      tap(isAdmin => {
+        if (!isAdmin) {
+          this.router.navigate(['/users/login']);
+        }
+      }),
+      map(isAdmin => isAdmin)
+    );
   }
+
 }

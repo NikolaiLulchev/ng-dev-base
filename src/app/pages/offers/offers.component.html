@@ -1,15 +1,47 @@
-<div class="mat-card-grid max-w-7xl mx-auto" *ngIf="jobs.length > 0">
+<div class="mat-card-grid max-w-7xl mx-auto" *ngIf="jobs?.length > 0">
 
-    <mat-paginator
-      [length]="jobs.length"
-      [pageSize]="pageSize"
-      [pageIndex]="pageIndex"
-      (page)="pageIndex = $event.pageIndex; pageSize = $event.pageSize"
-      hidePageSize
-    ></mat-paginator>
+  <mat-paginator
+    [length]="jobs.length"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPageIndex"
+    (page)="onPageChange($event)"
+    hidePageSize
+    showFirstLastButtons
+  ></mat-paginator>
+
+  <form>
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <mat-select [(ngModel)]="location" name="location" [value]="''">
+        <mat-option>No filter</mat-option>
+        <mat-option *ngFor="let location of locations | keyvalue" [value]="location.key">
+          {{ location.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Position</mat-label>
+      <mat-select [(ngModel)]="position" name="position" [value]="''">
+        <mat-option>No filter</mat-option>
+        <mat-option *ngFor="let position of positions | keyvalue" [value]="position.key">
+          {{ position.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Level</mat-label>
+      <mat-select [(ngModel)]="level" name="level" [value]="''">
+        <mat-option>No filter</mat-option>
+        <mat-option *ngFor="let level of levels | keyvalue" [value]="level.key">
+          {{ level.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="filterOffers()" type="submit">Filter</button>
+  </form>
 
   <mat-grid-list cols="3">
-    <mat-grid-tile *ngFor="let job of jobs.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)">
+    <mat-grid-tile *ngFor="let job of jobs.slice(currentPageIndex * pageSize, (currentPageIndex + 1) * pageSize)">
       <mat-card class="mat-card">
         <mat-card-header>
           <mat-card-title>{{job.position}}</mat-card-title>
