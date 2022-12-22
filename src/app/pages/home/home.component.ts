@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import {IUser} from "../../core/interfaces/user";
+import {Component} from '@angular/core';
 import {AuthService} from "../../auth.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -9,8 +7,8 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  currentUser$: Observable<IUser> = this.authService.currentUser$;
 
-  constructor(public authService: AuthService){}
+  constructor(public authService: AuthService) {
+  }
 
 }

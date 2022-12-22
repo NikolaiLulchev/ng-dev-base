@@ -1,6 +1,8 @@
 <div class="mat-card-grid max-w-7xl mx-auto">
   <mat-grid-list cols="3">
-    <mat-grid-tile *ngFor="let job of jobs">
+    <mat-paginator *ngIf="jobs" [length]="jobs.length" [pageSize]="pageSize" [pageSizeOptions]="[6, 12, 24]"
+                   (page)="pageEvent = $event" showFirstLastButtons></mat-paginator>
+    <mat-grid-tile *ngFor="let job of displayedJobs" >{{ job | json }}  // debug statement
       <mat-card class="mat-card">
         <mat-card-header>
           <mat-card-title>{{job.position}}</mat-card-title>

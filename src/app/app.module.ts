@@ -22,6 +22,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
@@ -51,7 +52,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
         MatTableModule,
         MatIconModule,
         ReactiveFormsModule,
-        MatGridListModule
+        MatGridListModule,
+        MatPaginatorModule
     ],
   exports: [FontAwesomeModule],
   providers: [],

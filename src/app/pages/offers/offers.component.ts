@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PositionEnum} from "../../core/enums/position.enum";
 import {LocationEnum} from "../../core/enums/location.enum";
 import {OfferDTO, OfferService} from "../../core/offer.service";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-offers',
@@ -14,7 +15,16 @@ export class OffersComponent implements OnInit{
   location: LocationEnum;
   company: string;
   addedOn: Date;
-  jobs:OfferDTO[]
+  jobs: OfferDTO[] = [];
+  pageSize = 6;
+  pageEvent: PageEvent = {} as PageEvent;  // initialize as an empty object
+
+  displayedJobs: OfferDTO[];
+
+  updateDisplayedJobs() {
+    const startIndex = this.pageEvent.pageIndex * this.pageEvent.pageSize;
+    this.displayedJobs = this.jobs.slice(startIndex, startIndex + this.pageEvent.pageSize);
+  }
 
   constructor(private offerService:OfferService) {
   }
@@ -23,53 +33,7 @@ export class OffersComponent implements OnInit{
     this.offerService.getAllOffers$().subscribe({
       next:(jobs => this.jobs=jobs)
     })
-    }
-
-
-
-  // jobs = [
-  //   {
-  //     position: PositionEnum.FULLSTACK,
-  //     title: 'Full Stack Developer',
-  //     location: LocationEnum.PLOVDIV,
-  //     company: 'DevBase',
-  //     addedOn: Date.parse(String(3-3-2022))
-  //   },
-  //   {
-  //     position: PositionEnum.FULLSTACK,
-  //     title: 'Full Stack Developer',
-  //     location: LocationEnum.PLOVDIV,
-  //     company: 'DevBase',
-  //     addedOn: Date.parse(String(2022 - 12 - 12))
-  //   },
-  //   {
-  //     position: PositionEnum.FULLSTACK,
-  //     title: 'Full Stack Developer',
-  //     location: LocationEnum.PLOVDIV,
-  //     company: 'DevBase',
-  //     addedOn: Date.parse(String(2022 - 12 - 12))
-  //   },
-  //   {
-  //     position: PositionEnum.FULLSTACK,
-  //     title: 'Full Stack Developer',
-  //     location: LocationEnum.PLOVDIV,
-  //     company: 'DevBase',
-  //     addedOn: Date.parse(String(2022 - 12 - 12))
-  //   },
-  //   {
-  //     position: PositionEnum.FULLSTACK,
-  //     title: 'Full Stack Developer',
-  //     location: LocationEnum.PLOVDIV,
-  //     company: 'DevBase',
-  //     addedOn: Date.parse(String(2022 - 12 - 12))
-  //   },
-  //   {
-  //     position: PositionEnum.FULLSTACK,
-  //     title: 'Full Stack Developer',
-  //     location: LocationEnum.PLOVDIV,
-  //     company: 'DevBase',
-  //     addedOn: Date.parse(String(2022 - 12 - 12))
-  //   }
-  // ]
+    this.updateDisplayedJobs();
+  }
 }
 
