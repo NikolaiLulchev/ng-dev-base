@@ -1,8 +1,15 @@
-<div class="mat-card-grid max-w-7xl mx-auto">
+<div class="mat-card-grid max-w-7xl mx-auto" *ngIf="jobs.length > 0">
+
+    <mat-paginator
+      [length]="jobs.length"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      (page)="pageIndex = $event.pageIndex; pageSize = $event.pageSize"
+      hidePageSize
+    ></mat-paginator>
+
   <mat-grid-list cols="3">
-    <mat-paginator *ngIf="jobs" [length]="jobs.length" [pageSize]="pageSize" [pageSizeOptions]="[6, 12, 24]"
-                   (page)="pageEvent = $event" showFirstLastButtons></mat-paginator>
-    <mat-grid-tile *ngFor="let job of displayedJobs" >{{ job | json }}  // debug statement
+    <mat-grid-tile *ngFor="let job of jobs.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)">
       <mat-card class="mat-card">
         <mat-card-header>
           <mat-card-title>{{job.position}}</mat-card-title>
@@ -16,4 +23,8 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <p *ngIf="jobs.length === 0">No results found.</p>
+
 </div>
+
