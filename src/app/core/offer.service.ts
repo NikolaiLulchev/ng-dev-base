@@ -7,7 +7,7 @@ import {environment} from "../../environments/environment";
 
 export interface OfferDTO {
   id: number,
-  user: IUser,
+  username:string,
   position: string,
   title: string,
   location: string,
@@ -31,7 +31,7 @@ export class OfferService {
     return this.http.get<OfferDTO[]>(`${environment.apiUrl}/offers`, {withCredentials: true});
   }
 
-  getOfferBiId$(offerId: number): Observable<OfferDTO> {
+  getOfferById$(offerId: number): Observable<OfferDTO> {
     return this.http.get<OfferDTO>(`${environment.apiUrl}/offers/${offerId}`, {withCredentials: true});
   }
 

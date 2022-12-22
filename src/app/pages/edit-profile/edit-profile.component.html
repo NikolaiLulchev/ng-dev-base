@@ -10,7 +10,7 @@
       <mat-label>Gender</mat-label>
       <mat-select formControlName="gender">
         <mat-option *ngFor="let gender of genderOptions" [value]="gender">
-          {{ gender }}
+          {{gender}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -18,7 +18,7 @@
       <mat-label>Experience Level</mat-label>
       <mat-select formControlName="level">
         <mat-option *ngFor="let level of experienceLevelOptions" [value]="level">
-          {{ level}}
+          {{level}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -32,7 +32,7 @@
       <mat-label>Tech Stack</mat-label>
       <mat-select formControlName="techStack" multiple>
         <mat-option *ngFor="let tech of techStackOptions" [value]="tech">
-          {{ tech}}
+          {{tech}}
         </mat-option>
       </mat-select>
     </mat-form-field>

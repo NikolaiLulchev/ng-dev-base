@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-content>
     <h1>Add Job Offer</h1>
-    <form>
+    <form [formGroup]="addOfferForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
-        <input matInput type="text" placeholder="Title" [(ngModel)]="title" name="title">
+        <input matInput type="text" placeholder="Title" formControlName="title">
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -23,12 +23,12 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <textarea matInput placeholder="Description" [(ngModel)]="description" name="description"></textarea>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
       </mat-form-field>
       <br>
       <mat-form-field>
         <mat-label>Experience Level</mat-label>
-        <mat-select formControlName="experience">
+        <mat-select formControlName="level">
           <mat-option *ngFor="let level of experience" [value]="level">{{level}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -37,10 +37,13 @@
         <mat-label>Tech Stack</mat-label>
         <mat-select formControlName="techStack" multiple>
           <mat-option *ngFor="let tech of techStack" [value]="tech">
-            {{ tech}}
+            {{tech}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" [disabled]="!addOfferForm.valid">Post Offer</button>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>
