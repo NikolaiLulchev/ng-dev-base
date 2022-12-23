@@ -3,6 +3,10 @@
     <h1>Add Job Offer</h1>
     <form [formGroup]="addOfferForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
+        <input matInput type="text" placeholder="Company Name" formControlName="company">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
         <input matInput type="text" placeholder="Title" formControlName="title">
       </mat-form-field>
       <br>

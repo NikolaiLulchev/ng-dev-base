@@ -39,7 +39,8 @@ export class AddOfferComponent {
             location: [''],
             description: [''],
             level: [''],
-            techStack: ['']
+            techStack: [''],
+            company:['']
           });
         }
       },
@@ -55,7 +56,7 @@ export class AddOfferComponent {
     const offer: OfferDTO = {
       addedOn: undefined, id: null, isActive: false,
       username: this.currentUser.username,
-      companyName: undefined,
+      company: this.addOfferForm.value.company,
       position: this.addOfferForm.value.position,
       title: this.addOfferForm.value.title,
       location: this.addOfferForm.value.location,

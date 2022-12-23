@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {IUser} from "./interfaces/user";
 import {ITechStack} from "./interfaces/techStack";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -7,7 +6,7 @@ import {environment} from "../../environments/environment";
 
 export interface OfferDTO {
   id: number,
-  username:string,
+  username: string,
   position: string,
   title: string,
   location: string,
@@ -16,7 +15,7 @@ export interface OfferDTO {
   isActive: boolean,
   level: string,
   techStack: ITechStack[],
-  companyName: string
+  company: string
 }
 
 @Injectable({
@@ -25,6 +24,10 @@ export interface OfferDTO {
 export class OfferService {
 
   constructor(private http: HttpClient) {
+  }
+
+  getCompany$(username: string): Observable<{}> {
+    return this.http.get(`${environment.apiUrl}/company`, {withCredentials: true})
   }
 
   getAllOffers$(location?: string, position?: string, level?: string): Observable<OfferDTO[]> {
