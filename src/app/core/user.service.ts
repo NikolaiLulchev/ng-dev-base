@@ -1,15 +1,10 @@
 import {Injectable} from '@angular/core';
-import {IUser} from "./interfaces/user";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
-import {environment} from "../../environments/environment";
 
 export interface CreateUserDto {
   username: string,
   email: string,
   password: string,
-  confirmPassword: string,
+  rePassword: string,
   role: string,
   firstName: string,
   lastName: string

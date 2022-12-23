@@ -3,6 +3,13 @@ import {ITechStack} from "./interfaces/techStack";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {IUser} from "./interfaces/user";
+
+export interface CompanyDTO{
+  id:number,
+  name:String,
+  users:IUser[]
+}
 
 export interface OfferDTO {
   id: number,
@@ -15,7 +22,7 @@ export interface OfferDTO {
   isActive: boolean,
   level: string,
   techStack: ITechStack[],
-  company: string
+  company: CompanyDTO
 }
 
 @Injectable({

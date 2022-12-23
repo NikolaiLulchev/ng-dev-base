@@ -11,9 +11,9 @@ import {LevelEnum} from "../../core/enums/level.enum";
   styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
-  positions = Object.keys(PositionEnum);
-  locations = Object.keys(LocationEnum);
-  levels=Object.values(LevelEnum);
+  // positions = Object.keys(PositionEnum);
+  // locations = Object.keys(LocationEnum);
+  // levels=Object.values(LevelEnum);
   jobs: OfferDTO[];
 
   currentPageIndex = 0;
@@ -22,8 +22,11 @@ export class OffersComponent implements OnInit {
   location: string;
   position: string;
   level: string;
+  company: {}
 
-  constructor(private offerService: OfferService) {this.jobs = []}
+  constructor(private offerService: OfferService) {
+    this.jobs = []
+  }
 
   ngOnInit(): void {
     this.loadOffers();

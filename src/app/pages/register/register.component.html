@@ -1,52 +1,54 @@
 <mat-card>
   <mat-card-content>
-    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <h2>Register</h2>
       <mat-error *ngIf="!registerForm">
         The username and password were not recognized
       </mat-error>
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="username" name="username" required>
+        <input matInput formControlName="username" required [minlength]="4" [maxlength]="20">
         <mat-error>
-          Please provide a valid username
+          Please provide a valid username between 4 and 20 symbols
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>First Name</mat-label>
-        <input matInput [(ngModel)]="firstName" name="firstName" required>
+        <input matInput formControlName="firstName" required [minlength]="2" [maxlength]="20">
         <mat-error>
-          Please provide a valid username
+          Please provide a valid first name between 2 and 20 symbols
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Last Name</mat-label>
-        <input matInput [(ngModel)]="lastName" name="lastName" required>
+        <input matInput formControlName="lastName" required [minlength]="2" [maxlength]="20">
         <mat-error>
-          Please provide a valid username
+          Please provide a valid last name between 2 and 20 symbols
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" name="email" required>
+        <input matInput formControlName="email" required>
         <mat-error>
-          Please provide a valid username
+          Please provide a valid email
         </mat-error>
       </mat-form-field>
+      <ng-container formGroupName="pass">
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput type="password" [(ngModel)]="password" name="password" required>
+        <input matInput type="password" formControlName="password" required [minlength]="4">
         <mat-error>
-          Please provide a valid password
+          Please provide password. Minimum 4 symbols.
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Repeat Password</mat-label>
-        <input matInput type="password" [(ngModel)]="repassword" name="confirmPassword" required>
+        <input matInput type="password" formControlName="rePassword" required>
         <mat-error>
           Please provide a valid password
         </mat-error>
       </mat-form-field>
+      </ng-container>
 
       <mat-form-field appearance="fill">
         <mat-label>I'm here to</mat-label>
@@ -60,7 +62,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-raised-button color="primary" [disabled]="!registerForm.form.valid">Login</button>
+        <button mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button>
       </div>
     </form>
   </mat-card-content>

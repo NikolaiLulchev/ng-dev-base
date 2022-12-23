@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth.service";
+import {sameValueGroupValidator} from "../../util/utils";
+import {CreateUserDto} from "../../core/user.service";
 
 @Component({
   selector: 'app-register',
@@ -9,24 +11,34 @@ import {AuthService} from "../../auth.service";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  registerForm: boolean | undefined;
-  username: any;
-  password: any;
-  firstName: any;
-  lastName: any;
-  email: any;
-  repassword: any;
-  role: any;
 
-  constructor(private authService: AuthService, private router: Router) {
+
+  role: any;
+  registerForm = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+    firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    lastName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+    email: ['', [Validators.required]],
+    role: ['', [Validators.required]],
+    pass: this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      rePassword: []
+    }, {
+      validators: [sameValueGroupValidator('password', 'rePassword')]
+    })
+  });
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
   }
 
-  onSubmit(registerForm: NgForm) {
-    console.log(registerForm.value);
-    this.authService.register$(registerForm.value).subscribe({
+  onSubmit() {
+    if (this.registerForm.invalid) { return; }
+    console.log(this.registerForm.value);
+    let registerForm = this.registerForm.value;
+    this.authService.register$(<CreateUserDto>registerForm).subscribe({
       next: (user) => {
         console.log(user)
-        this.router.navigate(['/home']);
+        this.authService.login$(user);
       },
       error: (err) => {
         console.log(err)
