@@ -53,9 +53,15 @@ export class AddOfferComponent {
   onSubmit() {
 
     const offer: OfferDTO = {
-      ...this.addOfferForm.value,
+      addedOn: undefined, id: null, isActive: false,
       username: this.currentUser.username,
-      companyName: 'DoNiLa'
+      companyName: undefined,
+      position: this.addOfferForm.value.position,
+      title: this.addOfferForm.value.title,
+      location: this.addOfferForm.value.location,
+      description: this.addOfferForm.value.description,
+      level: this.addOfferForm.value.level,
+      techStack: this.addOfferForm.value.techStack
     };
     console.log(offer);
 

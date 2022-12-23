@@ -20,7 +20,10 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    data: {
+      reuse: true
+    }
   },
   {
     path: 'users',
