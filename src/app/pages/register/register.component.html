@@ -28,7 +28,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" required>
+        <input matInput formControlName="email" required email>
         <mat-error>
           Please provide a valid email
         </mat-error>
@@ -44,7 +44,7 @@
       <mat-form-field>
         <mat-label>Repeat Password</mat-label>
         <input matInput type="password" formControlName="rePassword" required>
-        <mat-error>
+        <mat-error *ngIf="registerForm.get('pass')?.errors?.['sameValueGroupValidator']">
           Please provide a valid password
         </mat-error>
       </mat-form-field>
@@ -52,7 +52,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>I'm here to</mat-label>
-        <mat-select [(ngModel)]="role" name="role" required>
+        <mat-select formControlName="role" required>
           <mat-option [value]="'USER'" > find a job</mat-option>
           <mat-option [value]="'EMPLOYER'">offer a job</mat-option>
         </mat-select>

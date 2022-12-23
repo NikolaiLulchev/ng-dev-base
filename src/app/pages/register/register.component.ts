@@ -3,7 +3,6 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth.service";
 import {sameValueGroupValidator} from "../../util/utils";
-import {CreateUserDto} from "../../core/user.service";
 
 @Component({
   selector: 'app-register',
@@ -12,13 +11,11 @@ import {CreateUserDto} from "../../core/user.service";
 })
 export class RegisterComponent {
 
-
-  role: any;
   registerForm = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-    lastName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-    email: ['', [Validators.required]],
+    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    email: ['', [Validators.required,Validators.email]],
     role: ['', [Validators.required]],
     pass: this.fb.group({
       password: ['', [Validators.required, Validators.minLength(4)]],
@@ -32,10 +29,20 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    if (this.registerForm.invalid) { return; }
+    if (this.registerForm.invalid) {
+      return;
+    }
     console.log(this.registerForm.value);
-    let registerForm = this.registerForm.value;
-    this.authService.register$(<CreateUserDto>registerForm).subscribe({
+    const userData ={
+      email: this.registerForm.value.email,
+      firstName: this.registerForm.value.firstName,
+      lastName: this.registerForm.value.lastName,
+      password: this.registerForm.value.pass.password,
+      confirmPassword: this.registerForm.value.pass.rePassword,
+      role: this.registerForm.value.role,
+      username: this.registerForm.value.username,
+    }
+    this.authService.register$(userData).subscribe({
       next: (user) => {
         console.log(user)
         this.authService.login$(user);

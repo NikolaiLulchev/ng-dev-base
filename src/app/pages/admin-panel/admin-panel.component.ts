@@ -10,7 +10,8 @@ import {AuthService} from "../../auth.service";
 })
 export class AdminPanelComponent {
   users: IUser[] = [];
-  displayedColumns = ['username', 'level', 'role', 'action'];
+  // displayedColumns = ['username', 'level', 'role', 'action'];
+  displayedColumns = ['username', 'level', 'role'];
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }

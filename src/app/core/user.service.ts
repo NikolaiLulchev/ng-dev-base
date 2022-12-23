@@ -4,7 +4,7 @@ export interface CreateUserDto {
   username: string,
   email: string,
   password: string,
-  rePassword: string,
+  confirmPassword: string,
   role: string,
   firstName: string,
   lastName: string
