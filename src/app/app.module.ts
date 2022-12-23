@@ -25,7 +25,6 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatPaginatorModule} from "@angular/material/paginator";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,22 +38,22 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     AdminPanelComponent,
     ProfileComponent,
     FooterComponent,
-    EditProfileComponent
+    EditProfileComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FontAwesomeModule,
-        FormsModule,
-        MatTableModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatGridListModule,
-        MatPaginatorModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    FormsModule,
+    MatTableModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatPaginatorModule
+  ],
   exports: [FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent]
