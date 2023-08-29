@@ -22,7 +22,7 @@ export interface OfferDTO {
   isActive: boolean,
   level: string,
   techStack: ITechStack[],
-  company: string
+  companyName: string
 }
 
 @Injectable({
