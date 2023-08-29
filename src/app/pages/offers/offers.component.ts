@@ -22,7 +22,7 @@ export class OffersComponent implements OnInit {
   location: string;
   position: string;
   level: string;
-  company: {}
+  company: string
 
   constructor(private offerService: OfferService) {
     this.jobs = []

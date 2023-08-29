@@ -9,6 +9,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 const modules = [
   MatSlideToggleModule,
@@ -20,7 +24,11 @@ const modules = [
   MatCardModule,
   MatButtonModule,
   MatButtonToggleModule,
-  MatRadioModule
+  MatRadioModule,
+  MatTableModule,
+  MatIconModule,
+  MatGridListModule,
+  MatPaginatorModule
 ];
 
 

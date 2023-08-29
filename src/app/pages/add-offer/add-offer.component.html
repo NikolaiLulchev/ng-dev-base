@@ -2,6 +2,7 @@
   <mat-card-content>
     <h1>Add Job Offer</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="addOfferForm">
+      <br>
       <mat-form-field>
         <input formControlName="company" matInput placeholder="Company Name" type="text">
       </mat-form-field>

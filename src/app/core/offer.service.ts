@@ -22,7 +22,7 @@ export interface OfferDTO {
   isActive: boolean,
   level: string,
   techStack: ITechStack[],
-  company: CompanyDTO
+  company: string
 }
 
 @Injectable({
@@ -50,10 +50,6 @@ export class OfferService {
     }
     return this.http.get<OfferDTO[]>(`${environment.apiUrl}/offers`, {params, withCredentials: true});
   }
-
-  // getAllOffers$(): Observable<OfferDTO[]> {
-  //   return this.http.get<OfferDTO[]>(`${environment.apiUrl}/offers`, {withCredentials: true});
-  // }
 
   getOfferById$(offerId: number): Observable<OfferDTO> {
     return this.http.get<OfferDTO>(`${environment.apiUrl}/offers/${offerId}`, {withCredentials: true});

@@ -15,13 +15,13 @@ import {AuthService} from "../../auth.service";
 })
 export class AddOfferComponent implements OnInit {
   addOfferForm: FormGroup;
+  company: string;
+  title: string;
   positions = Object.keys(PositionEnum);
   locations = Object.keys(LocationEnum);
   description: string;
   experience = Object.keys(LevelEnum);
   techStack = Object.keys(TechEnum);
-  title: string;
-  company: string;
   currentUser: IUser;
 
   constructor(private formBuilder: FormBuilder, private offerService: OfferService, private authService: AuthService) {
@@ -35,13 +35,13 @@ export class AddOfferComponent implements OnInit {
 
         if (this.currentUser) {
           this.addOfferForm = this.formBuilder.group({
-            position: [''],
+            company: [''],
             title: [''],
+            position: [''],
             location: [''],
             description: [''],
             level: [''],
-            techStack: [''],
-            company: ['']
+            techStack: ['']
           });
         }
         console.log("Form initialized:", this.addOfferForm);
