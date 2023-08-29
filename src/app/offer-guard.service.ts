@@ -14,7 +14,6 @@ export class OfferGuard {
   }
 
 
-
   canActivate(): boolean | Observable<boolean> | Promise<boolean> {
     return this.authService.currentUser$.pipe(
       map((user: IUser) => user && (user.role.includes('ADMIN') || user.role.includes('EMPLOYER'))),

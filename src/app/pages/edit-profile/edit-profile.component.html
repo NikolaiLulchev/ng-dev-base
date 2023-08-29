@@ -1,10 +1,10 @@
 <mat-card>
-  <form *ngIf="currentUser" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" *ngIf="currentUser" [formGroup]="editForm">
     <mat-form-field>
-      <input matInput placeholder="Username" formControlName="username"/>
+      <input formControlName="username" matInput placeholder="Username"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="email" placeholder="Email" formControlName="email"/>
+      <input formControlName="email" matInput placeholder="Email" type="email"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Gender</mat-label>
@@ -23,10 +23,10 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="First Name" formControlName="firstName"/>
+      <input formControlName="firstName" matInput placeholder="First Name"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Last Name" formControlName="lastName"/>
+      <input formControlName="lastName" matInput placeholder="Last Name"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Tech Stack</mat-label>
@@ -36,6 +36,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <button color="primary" mat-raised-button type="submit">Submit</button>
   </form>
 </mat-card>

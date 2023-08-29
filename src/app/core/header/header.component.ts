@@ -9,16 +9,14 @@ import {Observable, Subscription} from "rxjs";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent{
+export class HeaderComponent {
 
   currentUser$: Observable<IUser> = this.authService.currentUser$;
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
-
-  private isLoggingOut: boolean = false;
   user: IUser;
   canAddOffer: boolean;
+  private isLoggingOut: boolean = false;
   private subscription: Subscription;
-
 
 
   constructor(public authService: AuthService, private router: Router) {

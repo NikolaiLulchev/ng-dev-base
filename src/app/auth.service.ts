@@ -12,14 +12,11 @@ import {CreateUserDto, UpdateUserDto} from "./core/user.service";
 export class AuthService {
 
   private _currentUser = new BehaviorSubject<IUser>(undefined);
-
   currentUser$ = this._currentUser.asObservable();
   isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
   isAdmin$ = this.currentUser$.pipe(
     map(user => user && user.role.some(role => role === 'ADMIN'))
   );
-
-
 
   constructor(private httpClient: HttpClient) {
     this.currentUser$.subscribe(currentUser => {
@@ -27,12 +24,10 @@ export class AuthService {
     });
   }
 
-
-
-
   get isLogged() {
     return !!this.currentUser$;
   }
+
   login$(userData: { username: string, password: string }): Observable<IUser> {
     return this.httpClient
       .post<IUser>(`${environment.apiUrl}/users/login`, userData, {withCredentials: true, observe: 'response'})
@@ -46,16 +41,6 @@ export class AuthService {
       );
   }
 
-
-
-  // login$(userData: { username: string, password: string }): Observable<IUser> {
-  //   return this.httpClient
-  //     .post<IUser>(`${environment.apiUrl}/users/login`, userData, {withCredentials: true, observe: 'response'})
-  //     .pipe(
-  //       map(response => response.body),
-  //     )
-  // }
-
   logout$(): Observable<void> {
     return this.httpClient
       .post<void>(`${environment.apiUrl}/users/logout`, {}, {withCredentials: true})
@@ -65,7 +50,6 @@ export class AuthService {
         })
       );
   }
-
 
   register$(userData: CreateUserDto): Observable<IUser> {
     return this.httpClient.post<IUser>(`${environment.apiUrl}/users/register`, userData, {withCredentials: true})
@@ -93,11 +77,7 @@ export class AuthService {
     this._currentUser.next(undefined);
   }
 
-
-
   loadUsers(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${environment.apiUrl}/users`, {withCredentials: true});
   }
-
-
 }

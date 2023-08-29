@@ -7,19 +7,19 @@
       </mat-error>
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="username" name="username" required [minlength]="4" [maxlength]="20">
+        <input [(ngModel)]="username" [maxlength]="20" [minlength]="4" matInput name="username" required>
         <mat-error>
           Please provide a valid username
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput type="password"  [(ngModel)]="password" name="password" required [minlength]="4">
+        <input [(ngModel)]="password" [minlength]="4" matInput name="password" required type="password">
         <mat-error>
           Please provide a valid password
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+      <button [disabled]="!loginForm.form.valid" color="primary" mat-raised-button>Login</button>
     </form>
   </mat-card-content>
 </mat-card>

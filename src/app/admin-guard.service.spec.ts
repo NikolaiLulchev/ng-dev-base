@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AdminGuardService } from './admin-guard.service';
+import {AdminGuardService} from './admin-guard.service';
 
 describe('AdminGuardService', () => {
   let service: AdminGuardService;

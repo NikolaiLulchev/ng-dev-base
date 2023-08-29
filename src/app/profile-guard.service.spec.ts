@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ProfileGuard } from './profile-guard.service';
+import {ProfileGuard} from './profile-guard.service';
 
 describe('ProfileGuardService', () => {
   let service: ProfileGuard;
