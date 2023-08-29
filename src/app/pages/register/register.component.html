@@ -1,11 +1,11 @@
 <mat-card>
   <mat-card-content>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
       <h2>Register</h2>
 
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username" required [minlength]="4" [maxlength]="20">
+        <input [maxlength]="20" [minlength]="4" formControlName="username" matInput required>
         <mat-error>
           Please provide a valid username between 4 and 20 symbols
         </mat-error>
@@ -15,21 +15,21 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" required [minlength]="2" [maxlength]="20">
+        <input [maxlength]="20" [minlength]="2" formControlName="firstName" matInput required>
         <mat-error>
           Please provide a valid first name between 2 and 20 symbols
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" required [minlength]="2" [maxlength]="20">
+        <input [maxlength]="20" [minlength]="2" formControlName="lastName" matInput required>
         <mat-error>
           Please provide a valid last name between 2 and 20 symbols
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" required email>
+        <input email formControlName="email" matInput required>
         <mat-error>
           Please provide a valid email
         </mat-error>
@@ -37,14 +37,14 @@
       <ng-container formGroupName="pass">
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" required [minlength]="4">
+          <input [minlength]="4" formControlName="password" matInput required type="password">
           <mat-error>
             Please provide password. Minimum 4 symbols.
           </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Repeat Password</mat-label>
-          <input matInput type="password" formControlName="rePassword" required>
+          <input formControlName="rePassword" matInput required type="password">
           <mat-error
             *ngIf="registerForm.controls['rePassword']?.pristine || registerForm.controls['rePassword']?.errors?.MatchPassword">
             Passwords dont match!
@@ -64,7 +64,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button>
+        <button [disabled]="registerForm.invalid" color="primary" mat-raised-button>Register</button>
       </div>
     </form>
   </mat-card-content>

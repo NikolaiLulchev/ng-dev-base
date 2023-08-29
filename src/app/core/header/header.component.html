@@ -1,26 +1,26 @@
-<mat-toolbar color="primary" class="justify-between fixed z-50 top-0 left-1/2 -translate-x-1/2 max-w-7xl">
+<mat-toolbar class="justify-between fixed z-50 top-0 left-1/2 -translate-x-1/2 max-w-7xl" color="primary">
   <div><a routerLink="home">Welcome to DevBase</a></div>
   <div class="flex gap-x-4">
 
     <a routerLink="offers">Offers</a>
 
     <a *ngIf="(canAddOffer)" routerLink="/offers/add">Add Offer</a>
-<!--    <a *ngIf="(currentUser$ | async)?.role.includes('ADMIN') || (currentUser$ | async)?.role.includes('EMPLOYER')" routerLink="/add-offer">Add Offer</a>-->
+    <!--    <a *ngIf="(currentUser$ | async)?.role.includes('ADMIN') || (currentUser$ | async)?.role.includes('EMPLOYER')" routerLink="/add-offer">Add Offer</a>-->
 
 
     <a *ngIf="authService.isAdmin$ | async" routerLink="admin-panel">Admin Panel</a>
 
-<!--    <div class="flex gap-x-4" *ngIf="isLoggedIn$|async">-->
-<!--      <a routerLink="users/profile">Profile</a>-->
-<!--      <a href="javascript:void(0);" (click)="logoutHandler()">Logout</a>-->
-<!--    </div>-->
+    <!--    <div class="flex gap-x-4" *ngIf="isLoggedIn$|async">-->
+    <!--      <a routerLink="users/profile">Profile</a>-->
+    <!--      <a href="javascript:void(0);" (click)="logoutHandler()">Logout</a>-->
+    <!--    </div>-->
 
-<!--    <div class="flex gap-x-4" *ngIf="!(isLoggedIn$|async)">-->
-<!--      <a routerLink="users/login">Login</a>-->
-<!--      <a routerLink="users/register">Register</a>-->
-<!--    </div>-->
+    <!--    <div class="flex gap-x-4" *ngIf="!(isLoggedIn$|async)">-->
+    <!--      <a routerLink="users/login">Login</a>-->
+    <!--      <a routerLink="users/register">Register</a>-->
+    <!--    </div>-->
     <a *ngIf="(currentUser$ | async)" routerLink="users/profile">Profile</a>
-    <a *ngIf="isLoggedIn$ | async; else showLogout" href="javascript:void(0);" (click)="logoutHandler()">Logout</a>
+    <a (click)="logoutHandler()" *ngIf="isLoggedIn$ | async; else showLogout" href="javascript:void(0);">Logout</a>
     <ng-template #showLogout>
       <a routerLink="users/login">Login</a>
       <a routerLink="users/register">Register</a>

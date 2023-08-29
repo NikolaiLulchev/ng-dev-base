@@ -5,10 +5,10 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {IUser} from "./interfaces/user";
 
-export interface CompanyDTO{
-  id:number,
-  name:String,
-  users:IUser[]
+export interface CompanyDTO {
+  id: number,
+  name: String,
+  users: IUser[]
 }
 
 export interface OfferDTO {

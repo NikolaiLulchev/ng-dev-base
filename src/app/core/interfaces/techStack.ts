@@ -1,4 +1,4 @@
-export interface ITechStack{
-  id:number;
-  techStack:string;
+export interface ITechStack {
+  id: number;
+  techStack: string;
 }

@@ -11,15 +11,12 @@ import {CreateUserDto, UpdateUserDto} from "./core/user.service";
 })
 export class AuthService {
 
-  private _currentUser = new BehaviorSubject<IUser>(undefined);
-
-  currentUser$ = this._currentUser.asObservable();
   isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
   isAdmin$ = this.currentUser$.pipe(
     map(user => user && user.role.some(role => role === 'ADMIN'))
   );
-
-
+  private _currentUser = new BehaviorSubject<IUser>(undefined);
+  currentUser$ = this._currentUser.asObservable();
 
   constructor(private httpClient: HttpClient) {
     this.currentUser$.subscribe(currentUser => {
@@ -28,11 +25,10 @@ export class AuthService {
   }
 
 
-
-
   get isLogged() {
     return !!this.currentUser$;
   }
+
   login$(userData: { username: string, password: string }): Observable<IUser> {
     return this.httpClient
       .post<IUser>(`${environment.apiUrl}/users/login`, userData, {withCredentials: true, observe: 'response'})
@@ -45,7 +41,6 @@ export class AuthService {
         tap(user => this.handleLogin(user))
       );
   }
-
 
 
   // login$(userData: { username: string, password: string }): Observable<IUser> {
@@ -92,7 +87,6 @@ export class AuthService {
     console.log("logout handled")
     this._currentUser.next(undefined);
   }
-
 
 
   loadUsers(): Observable<IUser[]> {

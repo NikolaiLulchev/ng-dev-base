@@ -1,13 +1,13 @@
 <mat-card>
   <mat-card-content>
     <h1>Add Job Offer</h1>
-    <form [formGroup]="addOfferForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="addOfferForm">
       <mat-form-field>
-        <input matInput type="text" placeholder="Company Name" formControlName="company">
+        <input formControlName="company" matInput placeholder="Company Name" type="text">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput type="text" placeholder="Title" formControlName="title">
+        <input formControlName="title" matInput placeholder="Title" type="text">
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -27,7 +27,7 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        <textarea formControlName="description" matInput placeholder="Description"></textarea>
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -46,7 +46,7 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-raised-button color="primary" [disabled]="!addOfferForm.valid">Post Offer</button>
+        <button [disabled]="!addOfferForm.valid" color="primary" mat-raised-button>Post Offer</button>
       </div>
     </form>
   </mat-card-content>
