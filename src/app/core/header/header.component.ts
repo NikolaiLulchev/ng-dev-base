@@ -1,46 +1,37 @@
-import {Component} from '@angular/core';
-import {IUser} from "../interfaces/user";
-import {AuthService} from "../../auth.service";
-import {Router} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {IUser} from '../interfaces/user';
+import {AuthService} from '../../auth.service';
+import {Router} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
-
-  currentUser$: Observable<IUser> = this.authService.currentUser$;
-  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
+export class HeaderComponent implements OnInit, OnDestroy {
+  currentUser$: Observable<IUser>;
+  isLoggedIn$: Observable<boolean>;
   user: IUser;
   canAddOffer: boolean;
   private isLoggingOut: boolean = false;
   private subscription: Subscription;
 
-
-  constructor(public authService: AuthService, private router: Router) {
-  }
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.currentUser$ = this.authService.currentUser$;
     this.isLoggedIn$ = this.authService.isLoggedIn$;
-    this.subscription = this.authService.currentUser$.subscribe((user) => {
+
+    this.subscription = this.currentUser$.subscribe((user) => {
       this.user = user;
       this.canAddOffer = user && (user.role.includes('ADMIN') || user.role.includes('EMPLOYER'));
     });
   }
 
-  // ngOnInit(): void {
-  //   this.isLoggedIn$ = this.authService.isLoggedIn$;
-  //   this.subscription = this.authService.currentUser$.subscribe((user) => {
-  //     this.user = user;
-  //     this.canAddOffer = user && (user.role.includes('ADMIN') || user.role.includes('EMPLOYER'));
-  //   });
-  // }
-  //
-  // ngOnDestroy(): void {
-  //   this.subscription.unsubscribe();
-  // }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   logoutHandler(): void {
     if (this.isLoggingOut) {
@@ -51,8 +42,8 @@ export class HeaderComponent {
     console.log('logout called');
 
     this.authService.logout$().subscribe({
-      next: args => {
-        console.log(args);
+      next: () => {
+        console.log('Logged out');
       },
       complete: () => {
         this.isLoggingOut = false;
@@ -60,7 +51,7 @@ export class HeaderComponent {
       },
       error: () => {
         this.isLoggingOut = false;
-      }
+      },
     });
   }
 }
