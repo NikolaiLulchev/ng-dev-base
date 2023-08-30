@@ -22,7 +22,7 @@ export interface OfferDTO {
   isActive: boolean,
   level: string,
   techStack: ITechStack[],
-  companyName: string
+  company: CompanyDTO
 }
 
 @Injectable({
@@ -33,8 +33,11 @@ export class OfferService {
   constructor(private http: HttpClient) {
   }
 
-  getCompany$(username: string): Observable<{}> {
-    return this.http.get(`${environment.apiUrl}/company`, {withCredentials: true})
+  getCompany$(username: string): Observable<CompanyDTO> {
+    return this.http.get<CompanyDTO>(`${environment.apiUrl}/company`, {
+      params: {username},
+      withCredentials: true
+    });
   }
 
   getAllOffers$(location?: string, position?: string, level?: string): Observable<OfferDTO[]> {
