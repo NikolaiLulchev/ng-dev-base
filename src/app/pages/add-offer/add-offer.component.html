@@ -1,15 +1,15 @@
 <mat-card>
   <mat-card-content>
     <h1>Add Job Offer</h1>
-    <form (ngSubmit)="onSubmit()" [formGroup]="addOfferForm">
-      <mat-form-field>
-        <input formControlName="company" matInput placeholder="Company Name" type="text">
-      </mat-form-field>
-      <br>
+    <form *ngIf="addOfferForm" [formGroup]="addOfferForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
         <input formControlName="title" matInput placeholder="Title" type="text">
       </mat-form-field>
-      <br>
+
+      <mat-form-field>
+        <input formControlName="companyName" matInput placeholder="Company Name" type="text">
+      </mat-form-field>
+
       <mat-form-field>
         <mat-label>Position</mat-label>
         <mat-select formControlName="position">
@@ -18,30 +18,30 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+
       <mat-form-field>
         <mat-label>Location</mat-label>
         <mat-select formControlName="location">
-          <mat-option *ngFor="let location of locations" [value]="location">{{location}}</mat-option>
+          <mat-option *ngFor="let location of locations" [value]="location">{{ location }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+
       <mat-form-field>
         <textarea formControlName="description" matInput placeholder="Description"></textarea>
       </mat-form-field>
-      <br>
+
       <mat-form-field>
         <mat-label>Experience Level</mat-label>
         <mat-select formControlName="level">
-          <mat-option *ngFor="let level of experience" [value]="level">{{level}}</mat-option>
+          <mat-option *ngFor="let level of experience" [value]="level">{{ level }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+
       <mat-form-field>
         <mat-label>Tech Stack</mat-label>
         <mat-select formControlName="techStack" multiple>
           <mat-option *ngFor="let tech of techStack" [value]="tech">
-            {{tech}}
+            {{ tech }}
           </mat-option>
         </mat-select>
       </mat-form-field>

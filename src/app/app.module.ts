@@ -17,12 +17,8 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {FooterComponent} from './core/footer/footer.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatTableModule} from "@angular/material/table";
-import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component";
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -48,11 +44,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
-    MatTableModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatGridListModule,
-    MatPaginatorModule
+    ReactiveFormsModule
   ],
   exports: [FontAwesomeModule],
   providers: [],

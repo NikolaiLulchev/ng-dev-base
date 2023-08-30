@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PositionEnum} from "../../core/enums/position.enum";
-import {LocationEnum} from "../../core/enums/location.enum";
-import {LevelEnum} from "../../core/enums/level.enum";
-import {TechEnum} from "../../core/enums/tech.enum";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {OfferDTO, OfferService} from "../../core/offer.service";
-import {IUser} from "../../core/interfaces/user";
-import {AuthService} from "../../auth.service";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {OfferDTO, OfferService} from '../../core/offer.service';
+import {AuthService} from '../../auth.service';
+import {IUser} from '../../core/interfaces/user';
+import {LevelEnum, LocationEnum, PositionEnum, TechEnum} from '../../core/enums';
 
 @Component({
   selector: 'app-add-offer',
@@ -15,45 +12,46 @@ import {AuthService} from "../../auth.service";
 })
 export class AddOfferComponent implements OnInit {
   addOfferForm: FormGroup;
-  positions = Object.keys(PositionEnum);
-  locations = Object.keys(LocationEnum);
-  description: string;
-  experience = Object.keys(LevelEnum);
-  techStack = Object.keys(TechEnum);
-  title: string;
-  company: string;
   currentUser: IUser;
 
-  constructor(private formBuilder: FormBuilder, private offerService: OfferService, private authService: AuthService) {
-  }
+  positions = Object.keys(PositionEnum);
+  locations = Object.keys(LocationEnum);
+  experience = Object.keys(LevelEnum);
+  techStack = Object.keys(TechEnum);
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private offerService: OfferService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.authService.authenticate().subscribe({
       next: (user) => {
         this.currentUser = user;
-        console.log("current user " + JSON.stringify(user))
-
-        if (this.currentUser) {
-          this.addOfferForm = this.formBuilder.group({
-            position: [''],
-            title: [''],
-            location: [''],
-            description: [''],
-            level: [''],
-            techStack: [''],
-            company: ['']
-          });
-        }
-        console.log("Form initialized:", this.addOfferForm);
+        this.initializeForm();
+        console.log('current user', JSON.stringify(user));
       },
       error: (err) => {
-        console.error(err)
+        console.error(err);
       }
     });
   }
 
+  initializeForm(): void {
+    this.addOfferForm = this.formBuilder.group({
+      companyName: [''],
+      title: [''],
+      position: [''],
+      location: [''],
+      description: [''],
+      level: [''],
+      techStack: ['']
+    });
+    console.log('Form initialized:', this.addOfferForm);
+  }
 
-  onSubmit() {
+  onSubmit(): void {
     console.log('Form values:', this.addOfferForm.value);
 
     const offer: OfferDTO = {
@@ -61,13 +59,7 @@ export class AddOfferComponent implements OnInit {
       id: null,
       isActive: false,
       username: this.currentUser.username,
-      company: this.addOfferForm.value.company,
-      position: this.addOfferForm.value.position,
-      title: this.addOfferForm.value.title,
-      location: this.addOfferForm.value.location,
-      description: this.addOfferForm.value.description,
-      level: this.addOfferForm.value.level,
-      techStack: this.addOfferForm.value.techStack
+      ...this.addOfferForm.value
     };
     console.log('Offer object:', offer);
 
