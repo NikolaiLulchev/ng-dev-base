@@ -49,6 +49,7 @@ export class RegisterComponent {
       next: (user) => {
         console.log(user)
         this.authService.login$(user);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.log(err);
