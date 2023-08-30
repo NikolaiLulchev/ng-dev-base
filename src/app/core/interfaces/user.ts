@@ -15,5 +15,6 @@ export interface IUser {
   age: number;
   gender: GenderEnum;
   level: LevelEnum;
+  company:string;
 
 }
