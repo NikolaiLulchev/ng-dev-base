@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {OfferDTO, OfferService} from '../../core/offer.service';
+import {CompanyDTO, OfferDTO, OfferService} from '../../core/offer.service'; // Import CompanyDTO
 import {AuthService} from '../../auth.service';
 import {IUser} from '../../core/interfaces/user';
 import {LevelEnum, LocationEnum, PositionEnum, TechEnum} from '../../core/enums';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-offer',
@@ -13,6 +14,7 @@ import {LevelEnum, LocationEnum, PositionEnum, TechEnum} from '../../core/enums'
 export class AddOfferComponent implements OnInit {
   addOfferForm: FormGroup;
   currentUser: IUser;
+  currentCompany: CompanyDTO; // Define the variable to hold the current company
 
   positions = Object.keys(PositionEnum);
   locations = Object.keys(LocationEnum);
@@ -22,14 +24,17 @@ export class AddOfferComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private offerService: OfferService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     this.authService.authenticate().subscribe({
       next: (user) => {
         this.currentUser = user;
         this.initializeForm();
+        this.getCompanyForUser(); // Call the method here
         console.log('current user', JSON.stringify(user));
       },
       error: (err) => {
@@ -63,6 +68,32 @@ export class AddOfferComponent implements OnInit {
     };
     console.log('Offer object:', offer);
 
-    this.offerService.addOffer$(offer).subscribe();
+    this.offerService.addOffer$(offer).subscribe({
+      next: () => {
+        // Redirect to the page that displays all offers
+        this.router.navigate(['/offers']); // Make sure to inject Router into your component
+      },
+      error: (error) => {
+        console.error('Error adding offer:', error);
+      }
+    });
+  }
+
+
+  getCompanyForUser(): void {
+    this.offerService.getCompany$(this.currentUser.username).subscribe({
+      next: (company) => {
+        this.currentCompany = company;
+        if (this.currentCompany) {
+          this.addOfferForm.get('companyName').setValue(this.currentCompany.name);
+          this.addOfferForm.get('companyName').disable(); // Disable the field if company is available
+        } else {
+          this.addOfferForm.get('companyName').enable(); // Enable the field if no company is associated
+        }
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 }
